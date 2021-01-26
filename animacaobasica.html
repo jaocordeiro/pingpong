@@ -9,6 +9,7 @@
             }
 
             var posicaoBolaX = posicaoBolaY = 10;
+            var velocidadeBolaPosicaoX = velocidadeBolaPosicaoY = 5;
 
             function executar() {
                 var folhaDesenho = document.getElementById("folha");
@@ -20,19 +21,29 @@
 
                 var diametroBola = 10;
 
-                areaDesenho.fillStyle = '#32CD32';
+                areaDesenho.fillStyle = '#286047'; // cor do campo
 
                 areaDesenho.fillRect(0, 0, larguraCampo, alturaCampo);
 
-                areaDesenho.fillStyle = '#FF0000';
+                areaDesenho.fillStyle = '#ffffff'; // cor da bolinha - raquete e rede
 
                 areaDesenho.fillRect(larguraCampo/2 - espessuraRede/2, 0, espessuraRede, alturaCampo);
 
                 //Desenha a bola
                 areaDesenho.fillRect(posicaoBolaX - diametroBola/2, posicaoBolaY - diametroBola/2, diametroBola, diametroBola);
             
-                posicaoBolaX = posicaoBolaX + 1;
-                posicaoBolaY = posicaoBolaY + 1;
+                posicaoBolaX = posicaoBolaX + velocidadeBolaPosicaoX;
+                posicaoBolaY = posicaoBolaY + velocidadeBolaPosicaoY;
+
+                //verifica lateral superior
+                if(posicaoBolaY < 0 && velocidadeBolaPosicaoY < 0) {
+                    velocidadeBolaPosicaoY = -velocidadeBolaPosicaoY;
+                }
+
+                //verifica lateral inferiro
+                if(posicaoBolaY > alturaCampo && velocidadeBolaPosicaoY > 0) {
+                    velocidadeBolaPosicaoY = -velocidadeBolaPosicaoY;
+                }
 
                 console.log("Correria");
             }
