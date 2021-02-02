@@ -17,13 +17,14 @@
             var espessuraRaquete = 11;
             var alturaRaquete = 100;
             var efeitoRaquete = 0.4;
+            var velocidadeJogador2 = 5;
             var posicaoJogador1 = posicaoJogador2 = 40
             var posicaoBolaX = posicaoBolaY = 10;
             var velocidadeBolaPosicaoX = velocidadeBolaPosicaoY = 6;
             var pontuacaoJogador1 = pontuacaoJogador2 = 0;
 
             folhaDesenho.addEventListener('mousemove', function(e){
-                posicaoJogador1 = e.clienty - alturaRaquete / 2;
+                posicaoJogador1 = e.clientY - alturaRaquete / 2;
             });
             
             function executar() {
@@ -72,6 +73,10 @@
                                 // Ponto jogador 2
                                 pontuacaoJogador2 = pontuacaoJogador2 + 1;
                                 // colcar bola no centro
+                                posicaoBolaX = larguraCampo / 2;
+                                posicaoBolaY = alturaCampo / 2;
+                                velocidadeBolaPosicaoX = -velocidadeBolaPosicaoX;
+                                velocidadeBolaPosicaoY = 3;
                             }
                         }
             
@@ -88,8 +93,19 @@
                         pontuacaoJogador1 = pontuacaoJogador1 + 1;
 
                         // Colocar no centro
+                        posicaoBolaX = larguraCampo / 2;
+                        posicaoBolaY = alturaCampo / 2;
+                        velocidadeBolaPosicaoX = -velocidadeBolaPosicaoX;
+                        velocidadeBolaPosicaoY = 3;
                     }
-                }    
+                }
+
+                // Atualiza posição jogador 2
+                if(posicaoJogador2 + alturaRaquete / 2 < posicaoBolaY) {
+                    posicaoJogador2 = posicaoJogador2 + velocidadeJogador2;
+                } else {
+                    posicaoJogador2 = posicaoJogador2 - velocidadeJogador2;
+                }   
             }
         </script>
     </body>
